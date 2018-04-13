@@ -1,1 +1,1 @@
-# acma-api
+# API for the hotel managing/accommodation finding app
