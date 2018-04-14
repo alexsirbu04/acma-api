@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const model = require('./models/Hotel');
 const Hotel = model.hotelModel;
-const keys = require('./config/dev');
+const keys = require('./config/keys');
 
 const hotels = [
   {
