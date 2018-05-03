@@ -20,6 +20,23 @@ const hotels = [
     rooms: 132,
     bars: 1,
     restaurants: 1
+  },
+  {
+    name: 'Hotel Continental',
+    street: {
+      streetName: 'B-dul Revolutiei 1989',
+      streetNumber: 5,
+      postalCode: '300054'
+    },
+    city: 'Timisoara',
+    country: 'Romania',
+    telephone: '(0040) 256 494 144',
+    email: 'secretariat@hotelcontinental.ro',
+    site: 'www.hotelcontinental.ro',
+    stars: 3.5,
+    rooms: 164,
+    bars: 1,
+    restaurants: 0
   }
 ];
 
