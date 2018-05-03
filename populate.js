@@ -17,26 +17,25 @@ const hotels = [
     email: 'info@sunshinesuites.com',
     site: 'www.sunshinesuites.com',
     stars: 4,
-    rooms: 132,
+    rooms: {
+      roomNumber: 132,
+      roomTypes: [
+        {
+          roomTypeName: 'Studio Suite',
+          roomTypeDescription: 'One King bed with pillow top mattress. 265 square feet. Located on all floors. Fully equipped kitchen with full-sized refrigerator, two-burner stove top, microwave, toaster, coffeemaker, and cookware. Two-seater dining table. Reading chair. 27-inch television with U.S. cable channels. Free wireless internet access. Bathroom with shower and tub. Ceiling fan and louvered windows in addition to air conditioning.'
+        },
+        {
+          roomTypeName: 'Deluxe Suite',
+          roomTypeDescription: 'Two queen beds with pillow top mattresses. 345 square feet. Located on all floors. Fully equipped kitchen with full-sized refrigerator, two-burner stove top, microwave, toaster, coffeemaker, and cookware. Two-seater dining table. Reading chair. 27-inch television with U.S. cable channels. Free wireless internet access. Bathroom with shower and tub. Ceiling fan and louvered windows in addition to air conditioning.'
+        },
+        {
+          roomTypeName: 'One Bedroom Suite',
+          roomTypeDescription: 'One king bed with pillow top mattress in bedroom area, and a single sleeper sofa bed in living room area. Garden, pool, or courtyard view. 394 square feet. Fully equipped kitchen with full-sized refrigerator, stove top, microwave, toaster, coffeemaker, and cookware. Two-seater dining table. Reading chair and coffee table. Two TVs (one in bedroom) television with U.S. cable channels. Free wireless internet. Bathroom with shower and tub. Ceiling fan & AC.'
+        }
+      ]
+    },
     bars: 1,
     restaurants: 1
-  },
-  {
-    name: 'Hotel Continental',
-    street: {
-      streetName: 'B-dul Revolutiei 1989',
-      streetNumber: 5,
-      postalCode: '300054'
-    },
-    city: 'Timisoara',
-    country: 'Romania',
-    telephone: '(0040) 256 494 144',
-    email: 'secretariat@hotelcontinental.ro',
-    site: 'www.hotelcontinental.ro',
-    stars: 3.5,
-    rooms: 164,
-    bars: 1,
-    restaurants: 0
   }
 ];
 
