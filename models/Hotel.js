@@ -14,7 +14,15 @@ const hotelSchema = new Schema({
   email: String,
   site: String,
   stars: Number,
-  rooms: Number,
+  rooms: {
+    roomNumber: Number,
+    roomTypes: [
+      {
+        roomTypeName: String,
+        roomTypeDescription: String
+      }
+    ]
+  },
   bars: Number,
   restaurants: Number
 });
