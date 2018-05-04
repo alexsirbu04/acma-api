@@ -21,7 +21,7 @@ const hotelSchema = new Schema({
         roomTypeName: String,
         roomTypeDescription: String,
         roomImage: String,
-        roomPrice: Number
+        price: Number
       }
     ]
   },
