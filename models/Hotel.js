@@ -19,12 +19,17 @@ const hotelSchema = new Schema({
     roomTypes: [
       {
         roomTypeName: String,
-        roomTypeDescription: String
+        roomTypeDescription: String,
+        roomImage: String,
+        roomPrice: Number
       }
     ]
   },
-  bars: Number,
-  restaurants: Number
+  bars: Boolean,
+  restaurants: Boolean,
+  firstImage: String,
+  secondImage: String,
+  thirdImage: String
 });
 
 module.exports = {
