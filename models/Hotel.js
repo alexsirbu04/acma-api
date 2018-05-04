@@ -3,6 +3,7 @@ const { Schema } = mongoose;
 
 const hotelSchema = new Schema({
   name: String,
+  type: String,
   street: {
     streetName: String,
     streetNumber: Number,
