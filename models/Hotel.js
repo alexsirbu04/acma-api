@@ -22,7 +22,17 @@ const hotelSchema = new Schema({
         roomTypeName: String,
         roomTypeDescription: String,
         roomImage: String,
-        price: Number
+        bedType: String,
+        price: Number,
+        services: {
+          wifi: Boolean,
+          bathtub: Boolean,
+          ac: Boolean,
+          bar: Boolean,
+          tv: Boolean,
+          safe: Boolean,
+          diningTable: Boolean
+        }
       }
     ]
   },
