@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const hotelSchema = new Schema({
+var hotelSchema = new Schema({
   name: String,
   type: String,
   street: {
@@ -30,8 +30,7 @@ const hotelSchema = new Schema({
           ac: Boolean,
           bar: Boolean,
           tv: Boolean,
-          safe: Boolean,
-          diningTable: Boolean
+          safe: Boolean
         }
       }
     ]
@@ -43,6 +42,4 @@ const hotelSchema = new Schema({
   thirdImage: String
 });
 
-module.exports = {
-  hotelModel: mongoose.model('hotels', hotelSchema)
-};
+module.exports = mongoose.model("hotels", hotelSchema);

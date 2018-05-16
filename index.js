@@ -1,15 +1,19 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const keys = require('./config/keys');
-require('./models/Hotel');
-const AppRouter = require('./router');
-const router = AppRouter.Router;
+const express = require("express");
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const config = require("./config/keys");
 
-mongoose.connect(keys.mongoURI);
+var router = require("./services/router");
 
-const app = express();
+mongoose.connect(config.mongoURI);
 
+var app = express();
+
+app.use(morgan("combined"));
+app.use(bodyParser.json());
 app.use(router);
 
-const PORT = process.env.PORT || 5000;
+var HOST = process.env.HOST || "127.0.0.1";
+var PORT = process.env.PORT || 5000;
 app.listen(PORT);
