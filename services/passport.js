@@ -15,7 +15,7 @@ var localStrategy = new LocalStrategy(localOptions, function(
   password,
   done
 ) {
-  User.findOne({ email: email }, function(err, user) {
+  User.findOne({ email: email.toLowerCase() }, function(err, user) {
     if (err) return done(err);
     if (!user) return done(null, false);
     user.comparePassword(password, function(err, isMatch) {
