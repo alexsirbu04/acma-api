@@ -30,8 +30,7 @@ exports.Register = function(req, res, next) {
     });
     user.save(function(err) {
       if (err) return next(err);
-      // res.json({ user_id: user._id, token: tokenForUser(user) });
-      res.json({ user_id: user._id });
+      res.json({ user_id: user._id, token: tokenForUser(user) });
     });
   });
 };
