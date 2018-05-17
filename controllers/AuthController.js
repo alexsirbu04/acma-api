@@ -37,5 +37,13 @@ exports.Register = function(req, res, next) {
 
 exports.Login = function(req, res, next) {
   var user = req.user;
-  res.send({ token: tokenForUser(user), user_id: user._id });
+  User.findOne({ email: user.email }, function(err, existingUser) {
+    if (err) return next(err);
+    if (existingUser) {
+      res.send({
+        user: existingUser,
+        token: tokenForUser(user)
+      });
+    }
+  });
 };
