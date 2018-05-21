@@ -20,7 +20,8 @@ const userSchema = new Schema({
     required: true
   },
   firstName: String,
-  lastName: String
+  lastName: String,
+  picture: String
 });
 
 userSchema.pre("save", function(next) {
