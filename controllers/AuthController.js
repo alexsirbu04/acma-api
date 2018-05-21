@@ -19,6 +19,8 @@ exports.Register = function(req, res, next) {
   var firstName = req.body.firstName;
   var lastName = req.body.lastName;
   var picture = req.body.picture || "";
+  var role = req.body.role;
+  var hotel = "";
 
   User.findOne({ email: email }, function(err, existingUser) {
     if (err) return next(err);
@@ -28,7 +30,9 @@ exports.Register = function(req, res, next) {
       password: password,
       firstName: firstName,
       lastName: lastName,
-      picture: picture
+      picture: picture,
+      role: role,
+      hotel: hotel
     });
     user.save(function(err) {
       if (err) return next(err);
