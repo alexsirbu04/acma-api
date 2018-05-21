@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const config = require("./config/keys");
 
+require("./populate");
+
 var router = require("./services/router");
 
 mongoose.connect(config.mongoURI);

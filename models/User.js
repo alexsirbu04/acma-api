@@ -21,7 +21,9 @@ const userSchema = new Schema({
   },
   firstName: String,
   lastName: String,
-  picture: String
+  picture: String,
+  role: String,
+  hotel: String
 });
 
 userSchema.pre("save", function(next) {
