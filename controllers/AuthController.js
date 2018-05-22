@@ -2,8 +2,8 @@ const User = require("../models/User");
 const jwt = require("jwt-simple");
 const config = require("../config/keys");
 
-function tokenForUser(user) {
-  var timestamp = new Date().getTime();
+tokenForUser = user => {
+  const timestamp = new Date().getTime();
   return jwt.encode(
     {
       sub: user.id,
@@ -11,39 +11,33 @@ function tokenForUser(user) {
     },
     config.secret
   );
-}
+};
 
-exports.Register = function(req, res, next) {
-  var email = req.body.email;
-  var password = req.body.password;
-  var firstName = req.body.firstName;
-  var lastName = req.body.lastName;
-  var picture = req.body.picture || "";
-  var role = req.body.role;
-  var hotel = "";
+exports.Register = (req, res, next) => {
+  const email = req.body.email;
 
-  User.findOne({ email: email }, function(err, existingUser) {
+  User.findOne({ email: email }, (err, existingUser) => {
     if (err) return next(err);
     if (existingUser) return res.status(422).json({ error: "Email taken" });
-    var user = new User({
+    const user = new User({
       email: email,
-      password: password,
-      firstName: firstName,
-      lastName: lastName,
-      picture: picture,
-      role: role,
-      hotel: hotel
+      password: req.body.password,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      picture: req.body.picture || "",
+      role: req.body.role,
+      hotel: ""
     });
-    user.save(function(err) {
+    user.save(err => {
       if (err) return next(err);
       res.json({ user_id: user._id, token: tokenForUser(user) });
     });
   });
 };
 
-exports.Login = function(req, res, next) {
-  var user = req.user;
-  User.findOne({ email: user.email }, function(err, existingUser) {
+exports.Login = (req, res, next) => {
+  const user = req.user;
+  User.findOne({ email: user.email }, (err, existingUser) => {
     if (err) return next(err);
     if (existingUser) {
       res.send({

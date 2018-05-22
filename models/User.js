@@ -27,11 +27,11 @@ const userSchema = new Schema({
 });
 
 userSchema.pre("save", function(next) {
-  var user = this;
+  const user = this;
   if (user.isNew || user.isModified("password")) {
-    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+    bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
       if (err) return next(err);
-      bcrypt.hash(user.password, salt, null, function(err, hash) {
+      bcrypt.hash(user.password, salt, null, (err, hash) => {
         if (err) return next(err);
         user.password = hash;
         next();

@@ -6,19 +6,19 @@ const LocalStrategy = require("passport-local");
 const User = require("../models/User");
 const config = require("../config/keys");
 
-var localOptions = {
+const localOptions = {
   usernameField: "email"
 };
 
-var localStrategy = new LocalStrategy(localOptions, function(
+const localStrategy = new LocalStrategy(localOptions, function(
   email,
   password,
   done
 ) {
-  User.findOne({ email: email.toLowerCase() }, function(err, user) {
+  User.findOne({ email: email.toLowerCase() }, (err, user) => {
     if (err) return done(err);
     if (!user) return done(null, false);
-    user.comparePassword(password, function(err, isMatch) {
+    user.comparePassword(password, (err, isMatch) => {
       if (err) return done(err);
       if (!isMatch) return done(null, false);
       return done(null, user);
@@ -26,13 +26,13 @@ var localStrategy = new LocalStrategy(localOptions, function(
   });
 });
 
-var jwtOptions = {
+const jwtOptions = {
   secretOrKey: config.secret,
   jwtFromRequest: ExtractJwt.fromHeader("authorization")
 };
 
-var jwtStrategy = new JwtStrategy(jwtOptions, function(payload, done) {
-  User.findById(payload.sub, function(err, user) {
+const jwtStrategy = new JwtStrategy(jwtOptions, (payload, done) => {
+  User.findById(payload.sub, (err, user) => {
     if (err) return done(err, false);
     if (user) {
       return done(null, user);
