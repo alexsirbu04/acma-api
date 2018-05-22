@@ -6,6 +6,13 @@ var reservationSchema = new Schema({
   firstName: String,
   lastName: String,
   hotel: String,
+  street: {
+    streetName: String,
+    streetNumber: Number,
+    postalCode: String
+  },
+  city: String,
+  country: String,
   room: String,
   price: Number,
   nightsBooked: Number,
