@@ -18,6 +18,7 @@ exports.Book = (req, res, next) => {
     id: req.body.id,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
+    email: req.body.email,
     hotel: req.body.hotel,
     street: req.body.street,
     city: req.body.city,
