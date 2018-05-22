@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 var reservationSchema = new Schema({
   id: String,
+  userId: String,
   firstName: String,
   lastName: String,
-  email: String,
   hotel: String,
   street: {
     streetName: String,

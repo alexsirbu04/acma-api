@@ -22,5 +22,8 @@ router.route("/book").post(requireAuth, reservationController.Book);
 router
   .route("/reservations")
   .get(requireAuth, reservationController.getReservations);
+router
+  .route("/reservations/:userId")
+  .get(requireAuth, reservationController.getReservationsForUser);
 
 module.exports = router;
