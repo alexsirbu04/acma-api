@@ -25,7 +25,7 @@ exports.Register = (req, res, next) => {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       picture: req.body.picture || "",
-      role: req.body.role,
+      role: req.body.role || "user",
       hotel: ""
     });
     user.save(err => {
