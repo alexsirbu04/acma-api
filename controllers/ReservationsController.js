@@ -18,7 +18,7 @@ exports.getReservations = (req, res, next) => {
           "YYYY-MM-D"
         );
 
-        if (moment(checkInDate).isSameOrAfter(now)) {
+        if (moment(checkInDate).isSame(now)) {
           activeReservations.push(reservation);
         }
       });
