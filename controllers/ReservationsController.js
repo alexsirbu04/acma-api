@@ -58,6 +58,13 @@ exports.getReservationsForUser = (req, res, next) => {
     });
 };
 
+exports.cancelReservation = (req, res, next) => {
+  Reservation.deleteOne({ id: req.params.id }, err => {
+    if (err) return next(err);
+    res.json({ deleted: true });
+  });
+};
+
 exports.Book = (req, res, next) => {
   const reservation = new Reservation({
     id: req.body.id,

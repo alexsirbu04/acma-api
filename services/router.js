@@ -25,5 +25,8 @@ router
 router
   .route("/reservations/:userId")
   .get(requireAuth, reservationController.getReservationsForUser);
+router
+  .route("/reservations/cancel/:id")
+  .delete(requireAuth, reservationController.cancelReservation);
 
 module.exports = router;
