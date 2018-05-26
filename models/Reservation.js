@@ -7,6 +7,7 @@ var reservationSchema = new Schema({
   firstName: String,
   lastName: String,
   hotel: String,
+  hotelImage: String,
   street: {
     streetName: String,
     streetNumber: Number,

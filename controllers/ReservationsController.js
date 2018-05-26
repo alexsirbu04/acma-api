@@ -66,6 +66,7 @@ exports.Book = (req, res, next) => {
     lastName: req.body.lastName,
     email: req.body.email,
     hotel: req.body.hotel,
+    hotelImage: req.body.hotelImage,
     street: req.body.street,
     city: req.body.city,
     country: req.body.country,
