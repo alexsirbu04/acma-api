@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const passport = require("passport");
 const config = require("./config/keys");
 
 const router = require("./services/router");
@@ -10,6 +11,7 @@ mongoose.connect(config.mongoURI);
 
 const app = express();
 
+app.use(passport.initialize());
 app.use(morgan("combined"));
 app.use(bodyParser.json());
 app.use(router);
