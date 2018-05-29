@@ -32,7 +32,8 @@ var reservationSchema = new Schema({
     dayOfWeek: String,
     month: String,
     year: String
-  }
+  },
+  status: String
 });
 
 module.exports = mongoose.model("reservations", reservationSchema);
