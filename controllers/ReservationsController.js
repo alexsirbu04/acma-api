@@ -1,8 +1,10 @@
 const moment = require("moment");
 const Reservation = require("../models/Reservation");
 
-exports.getReservations = (req, res, next) => {
-  Reservation.find()
+exports.getReservationsForReception = (req, res, next) => {
+  const hotel = req.params.hotel;
+  console.log(req.params.hotel);
+  Reservation.find({ hotel: hotel })
     .lean()
     .exec((err, reservations) => {
       if (err) return next(err);
