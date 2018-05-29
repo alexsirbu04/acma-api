@@ -85,7 +85,8 @@ exports.Book = (req, res, next) => {
     persons: req.body.persons,
     roomsBooked: req.body.roomsBooked,
     checkIn: req.body.checkIn,
-    checkOut: req.body.checkOut
+    checkOut: req.body.checkOut,
+    status: req.body.status || "upcoming"
   });
   reservation.save(err => {
     if (err) return next(err);
