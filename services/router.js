@@ -25,7 +25,7 @@ router
   .route("/reservations/:hotel")
   .get(requireAuth, reservationController.getReservationsForReception);
 router
-  .route("/reservations/:userId")
+  .route("/reservations/user/:userId")
   .get(requireAuth, reservationController.getReservationsForUser);
 router
   .route("/reservations/:id")
