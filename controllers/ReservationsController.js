@@ -69,6 +69,7 @@ exports.Book = (req, res, next) => {
   const reservation = new Reservation({
     id: req.body.id,
     userId: req.body.userId,
+    userImage: req.body.userImage,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
@@ -83,8 +84,7 @@ exports.Book = (req, res, next) => {
     persons: req.body.persons,
     roomsBooked: req.body.roomsBooked,
     checkIn: req.body.checkIn,
-    checkOut: req.body.checkOut,
-    cancelled: req.body.cancelled
+    checkOut: req.body.checkOut
   });
   reservation.save(err => {
     if (err) return next(err);

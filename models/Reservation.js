@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 var reservationSchema = new Schema({
   id: String,
   userId: String,
+  userImage: String,
   firstName: String,
   lastName: String,
   hotel: String,
@@ -31,8 +32,7 @@ var reservationSchema = new Schema({
     dayOfWeek: String,
     month: String,
     year: String
-  },
-  cancelled: Boolean
+  }
 });
 
 module.exports = mongoose.model("reservations", reservationSchema);
