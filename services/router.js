@@ -20,13 +20,16 @@ router.route("/login").post(requireLogin, authController.Login);
 router.route("/socialLogin").post(requireSocial, authController.Login);
 
 router.route("/hotels").get(hotelController.getHotels);
-router.route("/book").post(requireAuth, reservationController.Book);
+router.route("/book").post(requireAuth, reservationController.book);
 router
   .route("/reservations/:hotel")
   .get(requireAuth, reservationController.getReservationsForReception);
 router
   .route("/reservations/:userId")
   .get(requireAuth, reservationController.getReservationsForUser);
+router
+  .route("/reservations/:id")
+  .put(requireAuth, reservationController.updateStatus);
 router
   .route("/reservations/cancel/:id")
   .delete(requireAuth, reservationController.cancelReservation);

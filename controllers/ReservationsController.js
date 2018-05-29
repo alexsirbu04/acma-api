@@ -59,6 +59,17 @@ exports.getReservationsForUser = (req, res, next) => {
     });
 };
 
+exports.updateStatus = (req, res, next) => {
+  Reservation.findOne({ id: req.params.id }, (err, reservation) => {
+    if (err) return next(err);
+    reservation.status = "ongoing";
+    reservation.save(err => {
+      if (err) return next(err);
+      res.json({ updated: true });
+    });
+  });
+};
+
 exports.cancelReservation = (req, res, next) => {
   Reservation.deleteOne({ id: req.params.id }, err => {
     if (err) return next(err);
@@ -66,7 +77,7 @@ exports.cancelReservation = (req, res, next) => {
   });
 };
 
-exports.Book = (req, res, next) => {
+exports.book = (req, res, next) => {
   const reservation = new Reservation({
     id: req.body.id,
     userId: req.body.userId,
