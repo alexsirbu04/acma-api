@@ -3,8 +3,7 @@ const Reservation = require("../models/Reservation");
 
 exports.getReservationsForReception = (req, res, next) => {
   const hotel = req.params.hotel;
-  const status = req.params.status;
-  Reservation.find({ hotel: hotel, status: status })
+  Reservation.find({ hotel: hotel })
     .lean()
     .exec((err, reservations) => {
       if (err) return next(err);

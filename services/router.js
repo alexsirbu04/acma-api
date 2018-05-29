@@ -22,7 +22,7 @@ router.route("/socialLogin").post(requireSocial, authController.Login);
 router.route("/hotels").get(hotelController.getHotels);
 router.route("/book").post(requireAuth, reservationController.book);
 router
-  .route("/reservations/:hotel/:status")
+  .route("/reservations/:hotel")
   .get(requireAuth, reservationController.getReservationsForReception);
 router
   .route("/reservations/:userId")
