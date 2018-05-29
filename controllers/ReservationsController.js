@@ -3,7 +3,8 @@ const Reservation = require("../models/Reservation");
 
 exports.getReservationsForReception = (req, res, next) => {
   const hotel = req.params.hotel;
-  Reservation.find({ hotel: hotel })
+  const status = req.params.status;
+  Reservation.find({ hotel: hotel, status: status })
     .lean()
     .exec((err, reservations) => {
       if (err) return next(err);
@@ -32,7 +33,7 @@ exports.getReservationsForReception = (req, res, next) => {
 
 exports.getReservationsForUser = (req, res, next) => {
   const userId = req.params.userId;
-  Reservation.find({ userId: userId })
+  Reservation.find({ userId: userId, status: "upcoming" })
     .lean()
     .exec((err, reservations) => {
       if (err) return next(err);
