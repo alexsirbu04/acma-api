@@ -31,7 +31,6 @@ exports.getReservationsForReception = (req, res, next) => {
 };
 
 exports.getReservationsForUser = (req, res, next) => {
-  console.log("entered");
   const userId = req.params.userId;
   Reservation.find({ userId: userId, status: "upcoming" })
     .lean()
