@@ -32,7 +32,7 @@ exports.getReservationsForReception = (req, res, next) => {
 
 exports.getReservationsForUser = (req, res, next) => {
   const userId = req.params.userId;
-  Reservation.find({ userId: userId, status: "upcoming" })
+  Reservation.find({ userId: userId })
     .lean()
     .exec((err, reservations) => {
       if (err) return next(err);

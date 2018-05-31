@@ -10,11 +10,6 @@ const requireLogin = passport.authenticate("local", { session: false });
 const requireSocial = passport.authenticate("social", { session: false });
 const router = require("express").Router();
 
-const protected = (req, res, next) => {
-  res.send("Here's the token");
-};
-
-router.route("/protected").get(requireAuth, protected);
 router.route("/register").post(authController.Register);
 router.route("/login").post(requireLogin, authController.Login);
 router.route("/socialLogin").post(requireSocial, authController.Login);
