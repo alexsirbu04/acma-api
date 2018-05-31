@@ -8,7 +8,7 @@ exports.getReservationsForReception = (req, res, next) => {
     .exec((err, reservations) => {
       if (err) return next(err);
       const activeReservations = [];
-      const now = moment().format("YYYY-MM-D");
+      const now = moment().format("YYYY-MM-DD");
 
       reservations.map(reservation => {
         const { year, dayOfMonth } = reservation.checkIn;
@@ -16,7 +16,7 @@ exports.getReservationsForReception = (req, res, next) => {
           .month(reservation.checkIn.month)
           .format("MM");
         const checkInDate = moment(`${year}-${month}-${dayOfMonth}`).format(
-          "YYYY-MM-D"
+          "YYYY-MM-DD"
         );
 
         if (moment(checkInDate).isSame(now)) {
@@ -92,6 +92,7 @@ exports.book = (req, res, next) => {
     city: req.body.city,
     country: req.body.country,
     room: req.body.room,
+    roomImage: req.body.roomImage,
     price: req.body.price,
     nightsBooked: req.body.nightsBooked,
     persons: req.body.persons,

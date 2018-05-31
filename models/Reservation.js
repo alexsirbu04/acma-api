@@ -17,6 +17,7 @@ var reservationSchema = new Schema({
   city: String,
   country: String,
   room: String,
+  roomImage: String,
   price: Number,
   nightsBooked: Number,
   persons: Number,
