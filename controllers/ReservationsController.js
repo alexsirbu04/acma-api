@@ -4,7 +4,7 @@ const Reservation = require("../models/Reservation");
 exports.getReservationsForReception = (req, res, next) => {
   const hotel = req.params.hotel;
   Reservation.find({ hotel: hotel })
-    .or([{ status: "upcoming" }, { status: "ongoing" }])
+    .or([{ status: "upcoming" }, { status: "ongoing" }, { status: "onhold" }])
     .lean()
     .exec((err, reservations) => {
       if (err) return next(err);
