@@ -4,28 +4,31 @@ const Reservation = require("../models/Reservation");
 exports.getReservationsForReception = (req, res, next) => {
   const hotel = req.params.hotel;
   Reservation.find({ hotel: hotel })
+    .or([{ status: "upcoming" }, { status: "ongoing" }])
     .lean()
     .exec((err, reservations) => {
       if (err) return next(err);
-      const activeReservations = [];
-      const now = moment().format("YYYY-MM-DD");
+      // const activeReservations = [];
+      // const now = moment().format("YYYY-MM-DD");
 
-      reservations.map(reservation => {
-        const { year, dayOfMonth } = reservation.checkIn;
-        const month = moment()
-          .month(reservation.checkIn.month)
-          .format("MM");
-        const checkInDate = moment(`${year}-${month}-${dayOfMonth}`).format(
-          "YYYY-MM-DD"
-        );
+      // reservations.map(reservation => {
+      //   const { year, dayOfMonth } = reservation.checkIn;
+      //   const month = moment()
+      //     .month(reservation.checkIn.month)
+      //     .format("MM");
+      //   const checkInDate = moment(`${year}-${month}-${dayOfMonth}`).format(
+      //     "YYYY-MM-DD"
+      //   );
 
-        if (moment(checkInDate).isSame(now)) {
-          activeReservations.push(reservation);
-        }
-      });
+      //   if (moment(checkInDate).isSame(now)) {
+      //     activeReservations.push(reservation);
+      //   }
+      // });
 
       res.json({
-        reservations: activeReservations
+        reservations: reservations.map(reservation => ({
+          ...reservation
+        }))
       });
     });
 };
@@ -63,7 +66,7 @@ exports.getReservationsForUser = (req, res, next) => {
 exports.updateStatus = (req, res, next) => {
   Reservation.findOne({ id: req.params.id }, (err, reservation) => {
     if (err) return next(err);
-    reservation.status = "ongoing";
+    reservation.status = req.body.status;
     reservation.save(err => {
       if (err) return next(err);
       res.json({ updated: true });
