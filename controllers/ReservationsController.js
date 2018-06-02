@@ -41,7 +41,6 @@ exports.getReservationsForUser = (req, res, next) => {
       if (err) return next(err);
       const activeReservations = [];
       const now = moment().format("YYYY-MM-D");
-      console.log(now);
 
       reservations.map(reservation => {
         const { year, dayOfMonth } = reservation.checkIn;
