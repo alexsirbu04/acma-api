@@ -8,27 +8,21 @@ exports.getReservationsForReception = (req, res, next) => {
     .lean()
     .exec((err, reservations) => {
       if (err) return next(err);
-      // const activeReservations = [];
-      // const now = moment().format("YYYY-MM-DD");
+      const activeReservations = [];
+      const now = moment().format("YYYY-MM-DD");
 
-      // reservations.map(reservation => {
-      //   const { year, dayOfMonth } = reservation.checkIn;
-      //   const month = moment()
-      //     .month(reservation.checkIn.month)
-      //     .format("MM");
-      //   const checkInDate = moment(`${year}-${month}-${dayOfMonth}`).format(
-      //     "YYYY-MM-DD"
-      //   );
+      reservations.map(reservation => {
+        const { year, dayOfMonth } = reservation.checkIn;
+        const month = moment()
+          .month(reservation.checkIn.month)
+          .format("MM");
+        const checkInDate = moment(`${year}-${month}-${dayOfMonth}`).format(
+          "YYYY-MM-DD"
+        );
 
-      //   if (moment(checkInDate).isSame(now)) {
-      //     activeReservations.push(reservation);
-      //   }
-      // });
-
-      res.json({
-        reservations: reservations.map(reservation => ({
-          ...reservation
-        }))
+        if (moment(checkInDate).isSame(now)) {
+          activeReservations.push(reservation);
+        }
       });
     });
 };
