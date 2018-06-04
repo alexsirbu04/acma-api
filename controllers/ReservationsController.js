@@ -23,6 +23,10 @@ exports.getReservationsForReception = (req, res, next) => {
         if (moment(checkInDate).isSame(now)) {
           activeReservations.push(reservation);
         }
+
+        res.json({
+          reservations: activeReservations
+        });
       });
     });
 };
