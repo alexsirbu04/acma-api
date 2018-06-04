@@ -21,10 +21,10 @@ exports.getReservationsForReception = (req, res, next) => {
         if (moment(checkInDate).isSame(now)) {
           activeReservations.push(reservation);
         }
+      });
 
-        res.json({
-          reservations: activeReservations
-        });
+      res.json({
+        reservations: activeReservations
       });
     });
 };
@@ -36,15 +36,13 @@ exports.getReservationsForUser = (req, res, next) => {
     .exec((err, reservations) => {
       if (err) return next(err);
       const activeReservations = [];
-      const now = moment().format("YYYY-MM-D");
+      const now = moment().format("YYYY-MM-DD");
 
       reservations.map(reservation => {
-        const { year, dayOfMonth } = reservation.checkIn;
-        const month = moment()
-          .month(reservation.checkIn.month)
-          .format("MM");
-        const checkInDate = moment(`${year}-${month}-${dayOfMonth}`).format(
-          "YYYY-MM-D"
+        const { year, dayOfMonth, month } = reservation.checkIn;
+        const checkInDate = moment(
+          `${year}-${month}-${dayOfMonth}`,
+          "YYYY-MMM-DD"
         );
 
         if (moment(checkInDate).isSameOrAfter(now)) {

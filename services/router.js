@@ -17,7 +17,7 @@ router.route("/socialLogin").post(requireSocial, authController.Login);
 router.route("/hotels").get(hotelController.getHotels);
 router.route("/book").post(requireAuth, reservationController.book);
 router
-  .route("/reservations/:hotel")
+  .route("/reservations/reception/:hotel")
   .get(requireAuth, reservationController.getReservationsForReception);
 router
   .route("/reservations/user/:userId")
