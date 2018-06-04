@@ -12,12 +12,10 @@ exports.getReservationsForReception = (req, res, next) => {
       const now = moment().format("YYYY-MM-DD");
 
       reservations.map(reservation => {
-        const { year, dayOfMonth } = reservation.checkIn;
-        const month = moment()
-          .month(reservation.checkIn.month)
-          .format("MM");
-        const checkInDate = moment(`${year}-${month}-${dayOfMonth}`).format(
-          "YYYY-MM-DD"
+        const { year, dayOfMonth, month } = reservation.checkIn;
+        const checkInDate = moment(
+          `${year}-${month}-${dayOfMonth}`,
+          "YYYY-MMM-DD"
         );
 
         if (moment(checkInDate).isSame(now)) {
