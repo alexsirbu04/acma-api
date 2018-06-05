@@ -4,6 +4,7 @@ require("./passport");
 const hotelController = require("../controllers/HotelController");
 const authController = require("../controllers/AuthController");
 const reservationController = require("../controllers/ReservationsController");
+const clientController = require("../controllers/ClientController");
 
 const requireAuth = passport.authenticate("jwt", { session: false });
 const requireLogin = passport.authenticate("local", { session: false });
@@ -28,5 +29,6 @@ router
 router
   .route("/reservations/cancel/:id")
   .delete(requireAuth, reservationController.cancelReservation);
+router.route("/clients/add").post(requireAuth, clientController.add);
 
 module.exports = router;
