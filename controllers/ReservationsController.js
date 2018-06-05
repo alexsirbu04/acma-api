@@ -32,6 +32,7 @@ exports.getReservationsForReception = (req, res, next) => {
 exports.getReservationsForUser = (req, res, next) => {
   const userId = req.params.userId;
   Reservation.find({ userId: userId })
+    .or([{ status: "upcoming" }, { status: "onhold" }])
     .lean()
     .exec((err, reservations) => {
       if (err) return next(err);
