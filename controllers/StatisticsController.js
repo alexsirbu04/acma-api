@@ -3,7 +3,7 @@ const Hotel = require("../models/Hotel");
 const Reservation = require("../models/Reservation");
 const Client = require("../models/Client");
 
-exports.getTotalAvailableRooms = async (req, res, next) => {
+exports.getTotalAvailableRooms = (req, res, next) => {
   const result = {
     months: [
       {
