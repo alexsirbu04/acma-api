@@ -24,7 +24,7 @@ exports.getReservationsForReception = (req, res, next) => {
       // });
 
       res.json({
-        reservations: activeReservations
+        reservations: reservations
       });
     });
 };
