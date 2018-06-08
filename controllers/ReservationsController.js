@@ -24,7 +24,7 @@ exports.getReservationsForReception = (req, res, next) => {
           "YYYY-MMM-DD"
         );
 
-        if (moment(checkInDate).isSame(now)) {
+        if (moment(checkInDate).isSame(now) && status === "upcoming") {
           arrivals.push(reservation);
         }
         if (moment(checkOutDate).isSame(now)) {
