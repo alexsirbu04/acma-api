@@ -24,10 +24,16 @@ exports.getReservationsForReception = (req, res, next) => {
           "YYYY-MMM-DD"
         );
 
-        if (moment(checkInDate).isSame(now) && status === "upcoming") {
+        if (
+          moment(checkInDate).isSame(now) &&
+          reservation.status === "upcoming"
+        ) {
           arrivals.push(reservation);
         }
-        if (moment(checkOutDate).isSame(now) && status === "ongoing") {
+        if (
+          moment(checkOutDate).isSame(now) &&
+          reservation.status === "ongoing"
+        ) {
           departures.push(reservation);
         }
         if (reservation.status === "ongoing") {
