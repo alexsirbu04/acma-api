@@ -17,6 +17,7 @@ router.route("/login").post(requireLogin, authController.Login);
 router.route("/socialLogin").post(requireSocial, authController.Login);
 
 router.route("/hotels").get(hotelController.getHotels);
+
 router.route("/book").post(requireAuth, reservationController.book);
 router
   .route("/reservations/reception/:hotel")
@@ -30,7 +31,10 @@ router
 router
   .route("/reservations/cancel/:id")
   .delete(requireAuth, reservationController.cancelReservation);
+
+router.route("/clients").post(requireAuth, clientController.getData);
 router.route("/clients/add").post(requireAuth, clientController.add);
+
 router
   .route("/statistics/total_available_rooms/:hotel")
   .get(requireAuth, statisticsController.getTotalAvailableRooms);
