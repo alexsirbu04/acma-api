@@ -102,6 +102,12 @@ exports.getStatistics = (req, res, next) => {
                 });
               }
             }
+
+            result.countries.sort((a, b) => {
+              return b.percent - a.percent;
+            });
+            result.countries.splice(5);
+
             res.json(result);
           });
       });
