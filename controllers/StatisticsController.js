@@ -3,7 +3,7 @@ const Hotel = require("../models/Hotel");
 const Reservation = require("../models/Reservation");
 const Client = require("../models/Client");
 
-exports.getTotalAvailableRooms = (req, res, next) => {
+exports.getStatistics = (req, res, next) => {
   const result = {
     months: [
       {
@@ -54,7 +54,8 @@ exports.getTotalAvailableRooms = (req, res, next) => {
         name: "Dec",
         roomsBooked: 0
       }
-    ]
+    ],
+    countries: []
   };
 
   hotelName = req.params.hotel;
@@ -73,7 +74,36 @@ exports.getTotalAvailableRooms = (req, res, next) => {
             }
           }
         }
-        res.json(result);
+
+        Client.find({})
+          .lean()
+          .exec((err, clients) => {
+            if (err) return next(err);
+            result.totalClients = clients.length;
+
+            let found;
+            for (const client of clients) {
+              found = false;
+              for (const country of result.countries) {
+                if (country.name === client.country) {
+                  found = true;
+                  country.count = country.count + 1;
+                  country.percent = Math.floor(
+                    (country.count / result.totalClients) * 100
+                  );
+                }
+              }
+
+              if (found === false) {
+                result.countries.push({
+                  name: client.country,
+                  count: 1,
+                  percent: Math.floor((1 / result.totalClients) * 100)
+                });
+              }
+            }
+            res.json(result);
+          });
       });
   });
 };

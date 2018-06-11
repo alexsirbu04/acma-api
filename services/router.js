@@ -36,7 +36,7 @@ router.route("/clients").post(requireAuth, clientController.getData);
 router.route("/clients/add").post(requireAuth, clientController.add);
 
 router
-  .route("/statistics/total_available_rooms/:hotel")
-  .get(requireAuth, statisticsController.getTotalAvailableRooms);
+  .route("/statistics/:hotel")
+  .get(requireAuth, statisticsController.getStatistics);
 
 module.exports = router;
