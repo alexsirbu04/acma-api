@@ -16,7 +16,7 @@ router.route("/register").post(authController.Register);
 router.route("/login").post(requireLogin, authController.Login);
 router.route("/socialLogin").post(requireSocial, authController.Login);
 
-router.route("/hotels").get(hotelController.getHotels);
+router.route("/hotels").get(requireAuth, hotelController.getHotels);
 
 router.route("/book").post(requireAuth, reservationController.book);
 router
