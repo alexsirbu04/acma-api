@@ -32,7 +32,7 @@ router
   .route("/reservations/cancel/:id")
   .delete(requireAuth, reservationController.cancelReservation);
 
-router.route("/clients").post(requireAuth, clientController.getData);
+router.route("/clients").post(requireAuth, clientController.checkForClients);
 router.route("/clients/add").post(requireAuth, clientController.add);
 
 router

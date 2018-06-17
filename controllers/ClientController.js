@@ -15,7 +15,7 @@ exports.add = (req, res, next) => {
   res.json({ added: true });
 };
 
-exports.getData = (req, res, next) => {
+exports.checkForClients = (req, res, next) => {
   const clients = req.body.clients;
   const response = [];
   let length = clients.length;
