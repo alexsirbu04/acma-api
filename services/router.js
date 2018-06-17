@@ -18,13 +18,13 @@ router.route("/socialLogin").post(requireSocial, authController.Login);
 
 router.route("/hotels").get(requireAuth, hotelController.getHotels);
 
-router.route("/book").post(requireAuth, reservationController.book);
 router
   .route("/reservations/reception/:hotel")
   .get(requireAuth, reservationController.getReservationsForReception);
 router
   .route("/reservations/user/:userId")
   .get(requireAuth, reservationController.getReservationsForUser);
+router.route("/reservations/add").post(requireAuth, reservationController.book);
 router
   .route("/reservations/:id")
   .put(requireAuth, reservationController.updateStatus);
