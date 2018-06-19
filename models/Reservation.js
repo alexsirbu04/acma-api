@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-var reservationSchema = new Schema({
+const reservationSchema = new Schema({
   id: String,
   userId: String,
   userImage: String,

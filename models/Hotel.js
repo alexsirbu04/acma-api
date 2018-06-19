@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-var hotelSchema = new Schema({
+const hotelSchema = new Schema({
   name: String,
   type: String,
   street: {

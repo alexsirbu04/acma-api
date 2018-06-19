@@ -16,15 +16,15 @@ router.route("/register").post(authController.Register);
 router.route("/login").post(requireLogin, authController.Login);
 router.route("/socialLogin").post(requireSocial, authController.Login);
 
-router.route("/hotels").get(hotelController.getHotels);
+router.route("/hotels").get(requireAuth, hotelController.getHotels);
 
-router.route("/book").post(requireAuth, reservationController.book);
 router
   .route("/reservations/reception/:hotel")
   .get(requireAuth, reservationController.getReservationsForReception);
 router
   .route("/reservations/user/:userId")
   .get(requireAuth, reservationController.getReservationsForUser);
+router.route("/reservations/add").post(requireAuth, reservationController.book);
 router
   .route("/reservations/:id")
   .put(requireAuth, reservationController.updateStatus);
@@ -32,7 +32,7 @@ router
   .route("/reservations/cancel/:id")
   .delete(requireAuth, reservationController.cancelReservation);
 
-router.route("/clients").post(requireAuth, clientController.getData);
+router.route("/clients").post(requireAuth, clientController.checkForClients);
 router.route("/clients/add").post(requireAuth, clientController.add);
 
 router
